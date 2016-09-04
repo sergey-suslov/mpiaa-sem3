@@ -1,4 +1,4 @@
-from mpiaa.timer import time_me
+from mpiaa.timer import time_me, powers_of
 
 
 def find(items, item_to_find):
@@ -8,6 +8,4 @@ def find(items, item_to_find):
 
 
 if __name__ == "__main__":
-    time_me({
-        "Find": lambda items: find(items, 0)
-    }, [10**n for n in range(1, 6)])
+    time_me("Find", lambda items: find(items, len(items)/2), powers_of(10, 6), 1000)
