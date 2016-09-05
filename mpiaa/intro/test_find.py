@@ -1,4 +1,5 @@
 from mpiaa.intro.functions import find
+from mpiaa.util import seq_ints
 import unittest
 
 class FindTests(unittest.TestCase):
@@ -12,7 +13,7 @@ class FindTests(unittest.TestCase):
         self.assertTrue(find([1, 2, 3], 2))
 
     def test_big(self):
-        self.assertTrue(find(list(range(10000)), 5555))
+        self.assertTrue(find(seq_ints(10000), 5555))
 
     def test_single_fail(self):
         self.assertFalse(find([1], 2))
@@ -21,7 +22,7 @@ class FindTests(unittest.TestCase):
         self.assertFalse(find([1, 2, 3], 0))
 
     def test_big_fail(self):
-        self.assertFalse(find(list(range(10000)), 10000))
+        self.assertFalse(find(seq_ints(10000), 10000))
 
 
 if __name__ == "__main__":

@@ -1,18 +1,18 @@
 import timeit
 
 
-def make_header(strings):
-    return " ".join(["{0:<12}".format(s) for s in strings])
+def make_header(func_names):
+    return " ".join(["{0:<12}".format(s) for s in ["N"] + func_names])
 
 
 def make_line(n, times):
     return " ".join(["{0:<12}".format(n)] + ["{0:<12.5f}".format(t) for t in times])
 
 
-def time_us(functions, ns, repeats=10000):
-    print(make_header(["N"] + list(functions.keys())))
+def time_us(functions, ns, generator, repeats=int(1e6)):
+    print(make_header(list(functions.keys())))
     for n in ns:
-        data = list(range(n + 1))
+        data = generator(n)
         times = []
         for func in functions.values():
             timer = timeit.Timer(lambda: func(data))
@@ -20,9 +20,8 @@ def time_us(functions, ns, repeats=10000):
         print(make_line(n, times))
 
 
-def time_me(func_name, function, ns, repeats=10000):
-    time_us({func_name: function}, ns, repeats)
+def time_me(func_name, function, ns, generator, repeats=int(1e6)):
+    time_us(functions={func_name: function}, ns=ns, generator=generator, repeats=repeats)
 
 
-def powers_of(num, max_power):
-    return [num**p for p in range(0, max_power + 1)]
+

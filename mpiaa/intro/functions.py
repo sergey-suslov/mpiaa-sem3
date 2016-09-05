@@ -1,4 +1,5 @@
-from mpiaa.timer import time_me, powers_of
+from mpiaa.timer import time_me
+from mpiaa.util import *
 
 
 def find(items, item_to_find):
@@ -29,4 +30,4 @@ def all_unique(items):
 
 
 if __name__ == "__main__":
-    time_me("Find", lambda items: find(items, len(items)/2), powers_of(10, 6), 1000)
+    time_me("Find", lambda items: find(items, items[-1]), ns=powers_of(10, 0, 6), generator=seq_ints, repeats=1000)
