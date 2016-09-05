@@ -10,6 +10,11 @@ def make_line(n, times):
 
 
 def time_us(functions, ns, generator, repeats=int(1e6)):
+    """Prints time table for given functions and inputs.
+    functions - dictionary of {func name: func(input)} - functions to time,
+    ns - list of n for which generate input,
+    generator - func(n) - input generation function,
+    repeats - number of times to call functions for each given input."""
     print(make_header(list(functions.keys())))
     for n in ns:
         data = generator(n)
@@ -21,6 +26,11 @@ def time_us(functions, ns, generator, repeats=int(1e6)):
 
 
 def time_me(func_name, function, ns, generator, repeats=int(1e6)):
+    """Prints time table for given function and inputs.
+    function - func(input) - function to time,
+    ns - list of n for which generate input,
+    generator - func(n) - input generation function,
+    repeats - number of times to call function for each given input."""
     time_us(functions={func_name: function}, ns=ns, generator=generator, repeats=repeats)
 
 
