@@ -2,7 +2,7 @@ from mpiaa.intro.functions import all_unique
 from mpiaa.util import seq_ints
 import unittest
 
-class FindAllUnique(unittest.TestCase):
+class AllUniqueTests(unittest.TestCase):
     def test_empty(self):
         self.assertFalse(all_unique([]))
 
