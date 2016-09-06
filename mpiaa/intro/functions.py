@@ -22,11 +22,13 @@ def find_all_if(items, pred):
 
 def count_if(items, pred):
     """Returns number of items for which given predicate is satisfied."""
+    return 0
 
 
 def all_unique(items):
     """Returns True if all items are unique.
     Returns False otherwise."""
+    return False
 
 
 if __name__ == "__main__":
