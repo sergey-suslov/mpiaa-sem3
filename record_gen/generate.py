@@ -37,7 +37,7 @@ def generate_records(names, surnames, num):
 def main():
     names = read_file("names.txt")
     surnames = read_file("surnames.txt")
-    for p in range(2, 7):
+    for p in range(1, 7):
         num = 10**p
         output_file = "records_1e{0}.txt".format(p)
         print("Generating {0} records into {1}...".format(num, output_file))
