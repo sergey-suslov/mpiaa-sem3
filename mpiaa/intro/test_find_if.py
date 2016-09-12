@@ -1,0 +1,27 @@
+from mpiaa.intro.functions import find_if
+import unittest
+
+class FindIfTests(unittest.TestCase):
+    def setUp(self):
+        self.is_positive = lambda x: x > 0
+
+    def test_empty(self):
+        self.assertFalse(find_if([], self.is_positive))
+
+    def test_single(self):
+        self.assertTrue(find_if([1], self.is_positive))
+
+    def test_multiple(self):
+        self.assertTrue(find_if([-1, 2, -3], self.is_positive))
+
+    def test_single_not_found(self):
+        self.assertFalse(find_if([-1], self.is_positive))
+
+    def test_multiple_not_found(self):
+        self.assertFalse(find_if([-1, -2, -3], self.is_positive))
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
