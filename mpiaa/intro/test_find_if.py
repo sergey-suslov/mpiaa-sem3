@@ -6,19 +6,22 @@ class FindIfTests(unittest.TestCase):
         self.is_positive = lambda x: x > 0
 
     def test_empty(self):
-        self.assertFalse(find_if([], self.is_positive))
+        self.assertEqual(find_if([], self.is_positive), None)
 
     def test_single(self):
-        self.assertTrue(find_if([1], self.is_positive))
+        self.assertEqual(find_if([1], self.is_positive), 1)
 
     def test_multiple(self):
-        self.assertTrue(find_if([-1, 2, -3], self.is_positive))
+        self.assertEqual(find_if([-1, 2, -3], self.is_positive), 2)
+
+    def test_multiple_return_first(self):
+        self.assertEqual(find_if([-1, 2, 3, -3], self.is_positive), 2)
 
     def test_single_not_found(self):
-        self.assertFalse(find_if([-1], self.is_positive))
+        self.assertEqual(find_if([-1], self.is_positive), None)
 
     def test_multiple_not_found(self):
-        self.assertFalse(find_if([-1, -2, -3], self.is_positive))
+        self.assertEqual(find_if([-1, -2, -3], self.is_positive), None)
 
 
 if __name__ == "__main__":
