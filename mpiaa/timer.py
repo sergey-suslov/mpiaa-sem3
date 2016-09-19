@@ -15,12 +15,13 @@ def time_us(functions, ns, generator, repeats=int(1e6)):
     ns - list of n for which generate input,
     generator - func(n) - input generation function,
     repeats - number of times to call functions for each given input."""
-    print(make_header(list(functions.keys())))
+    keys = sorted(list(functions.keys()))
+    print(make_header(keys))
     for n in ns:
         data = generator(n)
         times = []
-        for func in functions.values():
-            timer = timeit.Timer(lambda: func(data))
+        for key in keys:
+            timer = timeit.Timer(lambda: functions[key](data))
             times.append(timer.timeit(repeats))
         print(make_line(n, times))
 
