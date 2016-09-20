@@ -4,7 +4,7 @@ from mpiaa.timer import time_us
 
 def bubble_sort(items, cmp=lambda x, y: x < y):
     """
-    Bubble sort_func
+    Bubble sort
 
     :param items: list of items to sort_func
     :param cmp: compare function, cmp(x,y) returns True if x < y, False otherwise
@@ -20,7 +20,7 @@ def bubble_sort(items, cmp=lambda x, y: x < y):
 
 def selection_sort(items, cmp=lambda x, y: x < y):
     """
-    Selection sort_func
+    Selection sort
 
     :param items: list of items to sort_func
     :param cmp: compare function, cmp(x,y) returns True if x < y, False otherwise
@@ -33,7 +33,7 @@ def selection_sort(items, cmp=lambda x, y: x < y):
 
 def merge_sort(items, cmp=lambda x, y: x < y):
     """
-    Merge sort_func
+    Merge sort
 
     :param items: list of items to sort_func
     :param cmp: compare function, cmp(x,y) returns True if x < y, False otherwise
@@ -46,7 +46,7 @@ def merge_sort(items, cmp=lambda x, y: x < y):
 
 def quick_sort(items, cmp=lambda x, y: x < y):
     """
-    Quick sort_func
+    Quick sort
 
     :param items: list of items to sort_func
     :param cmp: compare function, cmp(x,y) returns True if x < y, False otherwise
@@ -59,6 +59,6 @@ def quick_sort(items, cmp=lambda x, y: x < y):
 
 if __name__ == "__main__":
     time_us({
-        "Bubble sort_func": bubble_sort,
-        "Std sort_func": sorted
+        "Bubble sort": bubble_sort,
+        "Std sort": sorted
     }, ns=powers_of(10, 0, 4), generator=random_ints, repeats=10)
