@@ -14,3 +14,10 @@ def seq_ints(n, start=0, step=1):
 def random_ints(n, min_int=0, max_int=int(1e6)):
     """Returns list of 'n' random integers, each in a range [min_int, max_int]"""
     return [random.randint(min_int, max_int) for i in range(n)]
+
+
+def random_int_pairs(n, min_int=0, max_int=int(1e6)):
+    """Returns list of 'n' random integers, each in a range [min_int, max_int]"""
+    first_items = random_ints(n, min_int, max_int)
+    second_items = random_ints(n, min_int, max_int)
+    return list(zip(first_items, second_items))

@@ -23,6 +23,9 @@ class SortTests(unittest.TestCase):
     def test_multiple_dupes(self):
         self.assertEqual(self.sort_func([3, 2, 0, 2, 5]), [0, 2, 2, 3, 5])
 
+    def sort_negative(self):
+        self.assertEqual(self.sort_func([2, -3, 1]), [-3, 1, 2])
+
 
 if __name__ == "__main__":
     unittest.main()
