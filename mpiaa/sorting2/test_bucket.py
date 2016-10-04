@@ -1,6 +1,7 @@
-from mpiaa.sorting.sortings2 import bucket_sort
-from mpiaa.sorting.sort_tests import SortTests
 import unittest
+
+from mpiaa.sorting.sort_tests import SortTests
+from mpiaa.sorting2.sortings2 import bucket_sort
 
 
 class BucketSortTests(SortTests):

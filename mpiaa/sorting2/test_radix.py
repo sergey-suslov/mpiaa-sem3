@@ -1,5 +1,6 @@
-from mpiaa.sorting.sortings2 import radix_sort
 import unittest
+
+from mpiaa.sorting2.sortings2 import radix_sort
 
 
 class RadixSortTests(unittest.TestCase):
