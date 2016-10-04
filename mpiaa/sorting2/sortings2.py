@@ -10,8 +10,22 @@ def counting_sort(items, get_key=lambda item: item):
     :param get_key: function f(item) which returns item's key
     :return: sorted list of items
     """
-    result = items
-    # Your code here
+
+    # Insert correct value
+    num_of_keys = 123
+
+    # Insert correct function body
+    def key_to_index(key):
+        return key
+
+    count = [0]*num_of_keys
+    for item in items:
+        count[key_to_index(get_key(item))] += 1
+
+    # Modify count here appropriately
+
+    result = [0]*len(items)
+    # Rest of your code here
     return result
 
 
@@ -23,8 +37,22 @@ def bucket_sort(items, get_key=lambda item: item):
     :param get_key: function f(item) which returns item's key
     :return: sorted list of items
     """
-    result = items
-    # Your code here
+
+    # Insert your value
+    num_of_buckets = 123
+
+    # Insert correct function body
+    def key_to_bucket(key):
+        return key
+
+    buckets = [[]]*num_of_buckets
+    for item in items:
+        buckets[key_to_bucket(get_key(item))].append(item)
+
+    # Modify buckets appropriately if needed
+
+    result = []
+    # Rest of your code here
     return result
 
 
