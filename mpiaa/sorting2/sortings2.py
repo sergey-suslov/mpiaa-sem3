@@ -22,10 +22,10 @@ def counting_sort(items, get_key=lambda item: item):
     for item in items:
         count[key_to_index(get_key(item))] += 1
 
-    # Modify count here appropriately
-
     result = [0]*len(items)
+
     # Rest of your code here
+
     return result
 
 
@@ -49,10 +49,10 @@ def bucket_sort(items, get_key=lambda item: item):
     for item in items:
         buckets[key_to_bucket(get_key(item))].append(item)
 
-    # Modify buckets appropriately if needed
-
     result = []
+
     # Rest of your code here
+
     return result
 
 
@@ -64,8 +64,13 @@ def radix_sort(items, get_keys=(lambda item: item[0], lambda item: item[1])):
     :param get_keys: list of functions f(item), each of which returns item's key
     :return: sorted list of items
     """
+
     result = items
-    # Your code here
+
+    for get_key in get_keys:
+        # Replace 'pass' by actual code
+        pass
+
     return result
 
 
