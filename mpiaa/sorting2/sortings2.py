@@ -11,10 +11,10 @@ def counting_sort(items, get_key=lambda item: item):
     :return: sorted list of items
     """
 
-    # Insert correct value
+    # Replace value by correct one
     num_of_keys = 123
 
-    # Insert correct function body
+    # Replace function body by correct one
     def key_to_index(key):
         return key
 
@@ -38,10 +38,10 @@ def bucket_sort(items, get_key=lambda item: item):
     :return: sorted list of items
     """
 
-    # Insert your value
+    # Replace value by correct one
     num_of_buckets = 123
 
-    # Insert correct function body
+    # Replace function body by correct one
     def key_to_bucket(key):
         return key
 
@@ -72,8 +72,8 @@ def radix_sort(items, get_keys=(lambda item: item[0], lambda item: item[1])):
 if __name__ == "__main__":
     time_us({
         "Std sort": sorted,
-        "Cnt. sort": counting_sort,
-        "Bucket sort": bucket_sort
+        "Cnt. sort": counting_sort
+        #,"Bucket sort": bucket_sort
     }, ns=powers_of(10, 0, 5), generator=lambda n: random_ints(n, -1000, 1000), repeats=100)
 
     time_us({
