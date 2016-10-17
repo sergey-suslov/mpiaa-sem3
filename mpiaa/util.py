@@ -11,6 +11,12 @@ def seq_ints(n, start=0, step=1):
     return list(range(start, start + n*abs(step), step))
 
 
+def shuffled_ints(n, start=0, step=1):
+    ints = seq_ints(n, start, step)
+    random.shuffle(ints)
+    return ints
+
+
 def random_ints(n, min_int=0, max_int=int(1e6)):
     """Returns list of 'n' random integers, each in a range [min_int, max_int]"""
     return [random.randint(min_int, max_int) for i in range(n)]
