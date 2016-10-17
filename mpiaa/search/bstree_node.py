@@ -18,7 +18,8 @@ class BSTreeNode(object):
     def insert(self, item, key):
         """
         Assign item to this node if keys are equal.
-        Else insert item into the corresponding subtree (if present).
+        Else insert item into the corresponding subtree.
+        If there is no corresponding subtree, create it.
 
         :param item: item to insert
         :param key: item's key
