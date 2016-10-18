@@ -45,6 +45,21 @@ class BSTreeTests(unittest.TestCase):
         self.tree.insert(2)
         self.assertEqual(self.tree.size(), 3)
 
+    def test_size_empty(self):
+        self.assertEqual(self.tree.size(), 0)
+
+    def test_size_dupes(self):
+        self.tree.insert(1)
+        self.tree.insert(2)
+        self.tree.insert(2)
+        self.assertEqual(self.tree.size(), 2)
+
+    def test_insert_replace_strings(self):
+        self.tree.insert("abc", 1)
+        self.tree.insert("cda", 1)
+        self.tree.insert("efg", 2)
+        self.assertEqual(self.tree.find(1), "cda")
+
 
 if __name__ == "__main__":
     unittest.main()
