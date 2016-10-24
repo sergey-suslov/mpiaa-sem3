@@ -57,3 +57,13 @@ class BSTreeNode(object):
         """
         # Replace by correct code
         return 1
+
+    def height(self):
+        """
+        Return height of the subtree.
+
+        :return: height of the subtree
+        """
+        left_height = self.left.height() if self.left else 0
+        right_height = self.right.height() if self.right else 0
+        return 1 + max([left_height, right_height])

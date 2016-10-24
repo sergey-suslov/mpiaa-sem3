@@ -60,6 +60,22 @@ class BSTreeTests(unittest.TestCase):
         self.tree.insert("efg", 2)
         self.assertEqual(self.tree.find(1), "cda")
 
+    def test_height_single(self):
+        self.tree.insert(1)
+        self.assertEqual(self.tree.height(), 1)
+
+    def test_height_balanced(self):
+        self.tree.insert(2)
+        self.tree.insert(1)
+        self.tree.insert(3)
+        self.assertEqual(self.tree.height(), 2)
+
+    def test_height_unbalanced(self):
+        self.tree.insert(1)
+        self.tree.insert(2)
+        self.tree.insert(3)
+        self.assertEqual(self.tree.height(), 3)
+
 
 if __name__ == "__main__":
     unittest.main()

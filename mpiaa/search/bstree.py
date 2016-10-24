@@ -52,5 +52,18 @@ class BSTree(object):
         else:
             return 0
 
+    def height(self):
+        """
+        Get height of the tree
+
+        :return: height of the tree
+        """
+        if self.root:
+            return self.root.height()
+        else:
+            return 0
+
+
+
 
 
