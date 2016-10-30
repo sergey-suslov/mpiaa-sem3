@@ -4,8 +4,8 @@ import unittest
 
 class HashTableTests(unittest.TestCase):
     def setUp(self):
-        self.int_hash_table = HashTable(100, lambda key: key)
-        self.str_hash_table = HashTable(100, lambda key: hash(key))
+        self.int_hash_table = HashTable(100, lambda key: key % 100)
+        self.str_hash_table = HashTable(100, lambda key: hash(key) % 100)
 
     def test_int_find_in_empty(self):
         self.assertIsNone(self.int_hash_table.find(1))

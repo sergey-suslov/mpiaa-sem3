@@ -4,10 +4,10 @@ class HashTable:
         Hash table constructor.
 
         :param num_of_buckets: number of buckets in the hash table
-        :param hash_func: f(key), for each key must return some positive integer
+        :param hash_func: f(key), for each key must return integer in [0, num_of_buckets)
         """
         self.buckets = [[]] * num_of_buckets
-        self.has_func = hash_func
+        self.hash_func = hash_func
 
     def insert(self, item, key):
         """
