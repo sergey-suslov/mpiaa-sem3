@@ -1,4 +1,4 @@
-class HashTable:
+class HashTable(object):
     def __init__(self, num_of_buckets, hash_func):
         """
         Hash table constructor.
