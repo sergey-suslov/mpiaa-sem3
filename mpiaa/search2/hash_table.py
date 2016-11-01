@@ -6,7 +6,9 @@ class HashTable(object):
         :param num_of_buckets: number of buckets in the hash table
         :param hash_func: f(key), for each key must return integer in [0, num_of_buckets)
         """
-        self.buckets = [[]] * num_of_buckets
+        self.buckets = []
+        for i in range(num_of_buckets):
+            self.buckets.append([])
         self.hash_func = hash_func
 
     def insert(self, item, key):
