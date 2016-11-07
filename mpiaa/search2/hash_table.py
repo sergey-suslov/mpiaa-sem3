@@ -11,6 +11,9 @@ class HashTable(object):
             self.buckets.append([])
         self.hash_func = hash_func
 
+    def get_bucket(self, key):
+        return self.buckets[self.hash_func(key) % len(self.buckets)]
+
     def insert(self, item, key):
         """
         Inserts item in the hash table with given key.
