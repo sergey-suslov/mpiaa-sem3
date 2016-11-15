@@ -37,3 +37,8 @@ class GraphAlgsTests(unittest.TestCase):
         self.assertListsOfListsEqual(connected_components(self.graph2), [["a", "b", "c", "d"]])
         self.assertListsOfListsEqual(connected_components(self.graph2), [["a", "b", "c", "d"], ["e"]])
         self.assertListsOfListsEqual(connected_components(self.graph2), [["a", "b", "c", "d", "e"]])
+
+
+if __name__ == "__main__":
+    unittest.main()
+    
