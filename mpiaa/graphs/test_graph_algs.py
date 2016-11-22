@@ -28,8 +28,8 @@ class GraphAlgsTests(unittest.TestCase):
         self.assertEqual(shortest_path(self.graph4, "a", "e"), ["a", "c", "e"])
 
     def assertListsOfListsEqual(self, ll1, ll2):
-        s1 = set([set(l) for l in ll1])
-        s2 = set([set(l) for l in ll2])
+        s1 = frozenset([frozenset(l) for l in ll1])
+        s2 = frozenset([frozenset(l) for l in ll2])
         self.assertEqual(s1, s2)
 
     def test_connected_components(self):
