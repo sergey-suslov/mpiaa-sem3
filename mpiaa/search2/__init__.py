@@ -53,6 +53,7 @@ if __name__ == "__main__":
 
 
     print("Max len:  " + str(len_max))
+    print("Elements aren't unique" if len_max > 1 else "All elements are unique")
     print("Average len:  " + str(int(count) / str_hash_table.num_of_el))
     print("Fullness: " + str(count / str_hash_table.size))
 

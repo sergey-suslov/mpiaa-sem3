@@ -5,6 +5,7 @@ class BSTree(object):
 
     def __init__(self):
         self.root = None
+        self.elements = dict()
 
     def insert(self, item, key=None):
         """
@@ -19,6 +20,16 @@ class BSTree(object):
             self.root.insert(item, key)
         else:
             self.root = BSTreeNode(item, key)
+        if self.elements.__contains__(key):
+            self.elements[key] += 1
+        else:
+            self.elements[key] = 1
+
+    def all_unique(self):
+        for k, v in self.elements.items():
+            if v > 1:
+                return False
+        return True
 
     def find(self, key):
         """

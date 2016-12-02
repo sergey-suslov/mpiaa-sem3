@@ -22,6 +22,7 @@ def binary_search(items, items_to_find):
     return count
 
 
+
 if __name__ == "__main__":
     time_us({
         "Lin. search": lambda args: linear_search(*args),
