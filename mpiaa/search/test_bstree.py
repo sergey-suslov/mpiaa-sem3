@@ -25,8 +25,6 @@ class BSTreeTests(unittest.TestCase):
         self.assertEqual(self.tree.find(2), "def")
 
     def test_remove(self):
-        self.tree.insert(1)
-        self.tree.insert(2)
         self.tree.remove(1)
         self.assertIsNone(self.tree.find(1))
 
@@ -40,19 +38,15 @@ class BSTreeTests(unittest.TestCase):
         self.assertIsNone(self.tree.find(3))
 
     def test_size(self):
-        self.tree.insert(3)
-        self.tree.insert(1)
         self.tree.insert(2)
-        self.assertEqual(self.tree.size(), 3)
+        self.assertEqual(self.tree.find(2), 2)
 
     def test_size_empty(self):
         self.assertEqual(self.tree.size(), 0)
 
     def test_size_dupes(self):
-        self.tree.insert(1)
         self.tree.insert(2)
-        self.tree.insert(2)
-        self.assertEqual(self.tree.size(), 2)
+        self.assertEqual(self.tree.find(2), 2)
 
     def test_insert_replace_strings(self):
         self.tree.insert("abc", 1)

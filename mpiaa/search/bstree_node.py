@@ -14,6 +14,7 @@ class BSTreeNode(object):
         self.key = key
         self.left = left
         self.right = right
+        self._size = 1
 
     def insert(self, item, key):
         """
@@ -24,6 +25,18 @@ class BSTreeNode(object):
         :param item: item to insert
         :param key: item's key
         """
+        if self.key == key:
+            self.item = item
+        elif self.key < key:
+            if self.right:
+                self.right.insert(item, key)
+            else:
+                self.right = BSTreeNode(item, key)
+        else:
+            if self.left:
+                self.left.insert(item, key)
+            else:
+                self.left = BSTreeNode(item, key)
         # Replace by correct code
         pass
 
@@ -36,18 +49,45 @@ class BSTreeNode(object):
         :param key: key of the item to find
         :return: item or None
         """
+        if self.key == key:
+            return self.item
+        elif key > self.key:
+            return self.right.find(key)
+        else:
+            return self.left.find(key)
         # Replace by correct code
-        return None
 
     def remove(self, key):
         """
         Return modified subtree with item with the key removed.
-
-        :param key: key of the item to remove
         :return: modified subtree or old subtree
         """
-        # Replace by correct code
-        return self
+        if self.key == key:
+            if self.left and self.right:
+                tmp = self.right
+                while tmp.left != None:
+                    tmp = tmp.left
+                self.item = tmp.item
+                self.key = tmp.key
+                tmp = tmp.remove(tmp.key)
+
+            if not self.left and not self.right:
+                return None
+            elif not self.right:
+                return self.left
+            elif not self.left:
+                return self.right
+        else:
+            if self.right:
+                self.right = self.right.remove(key)
+            else: return None
+            if self.left:
+                self.left = self.left.remove(key)
+            else: return None
+        pass
+
+
+
 
     def size(self):
         """
@@ -55,8 +95,16 @@ class BSTreeNode(object):
 
         :return: number of items in the subtree
         """
+
         # Replace by correct code
-        return 1
+        if self.right and self.left:
+            return self.left.height() + self.right.height()
+        elif not self.right:
+            return self.left.size()
+        elif not self.left:
+            return self.right.size()
+        else:
+            return self._size
 
     def height(self):
         """

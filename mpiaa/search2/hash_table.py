@@ -1,54 +1,56 @@
 class HashTable(object):
-    def __init__(self, num_of_buckets, hash_func):
-        """
-        Hash table constructor.
+    def custom_hash(self, key):
+        return hash(key) % self.size
 
-        :param num_of_buckets: number of buckets in the hash table
-        :param hash_func: f(key), for each key must return integer in [0, num_of_buckets)
-        """
+    def __init__(self, num_of_buckets, hash_func):
         self.buckets = []
-        for i in range(num_of_buckets):
+        self.num_of_el = 0
+        self.size = num_of_buckets*2
+        for i in range(num_of_buckets*2):
             self.buckets.append([])
         self.hash_func = hash_func
 
-    def get_bucket(self, key):
-        return self.buckets[self.hash_func(key) % len(self.buckets)]
+    def append_last(self, search_from, key, item):
+        while self.buckets[search_from]:
+            if self.buckets[search_from][0][0] == key:
+                self.buckets[search_from].append([key, item])
+                return
+            if self.size - 1 == search_from:
+                search_from = 0
+            else:
+                search_from += 1
+        self.buckets[search_from].append([key, item])
+        self.num_of_el += 1
 
     def insert(self, item, key):
-        """
-        Inserts item in the hash table with given key.
-        If key already exists, replaces old item with the new one.
+        if self.num_of_el < self.size:
+            hash_key = self.custom_hash(key)
+            if self.buckets[hash_key]:
+                if self.buckets[hash_key][0][0] == key:
+                    self.buckets[hash_key].append([key, item])
+                else:
+                    self.append_last(hash_key, key, item)
+            else:
+                self.buckets[hash_key].append([key, item,])
+                self.num_of_el += 1
 
-        :param item: item(object) to insert
-        :param key: item's key
-        """
-        # Replace by correct code
-        pass
+    def search_last(self, start, key):
+        i = start
+        while self.buckets[i] and self.buckets[i][0][0] != key:
+            if i == self.size - 1:
+                i = 0
+            else:
+                i += 1
+            if i == start:
+                return None
+        return self.buckets[i]
 
     def find(self, key):
-        """
-        Returns item for the given key or None if key doesn't exist.
-
-        :param key: key of an item to find
-        :return: item or None
-        """
-        # Replace by correct code
-        return None
-
-    def remove(self, key):
-        """
-        Removes item (and its key) for the given key from the hash table.
-
-        :param key: key of an item to remove
-        """
-        # Replace by correct code
-        pass
-
-    def size(self):
-        """
-        Returns number of items in the hash table.
-
-        :return: number of items
-        """
-        # Replace by correct code
-        return 0
+        hash_key = self.custom_hash(key)
+        if self.buckets[hash_key]:
+            if self.buckets[hash_key][0][0] == key:
+                return self.buckets[hash_key]
+            else:
+                return self.search_last(hash_key, key)
+        else:
+            return None
