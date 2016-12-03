@@ -1,3 +1,4 @@
+from mpiaa.graphs_lab import StrongConnectivity
 from mpiaa.graphs_lab.graph import Graph
 import unittest
 
@@ -13,7 +14,6 @@ class GraphTests(unittest.TestCase):
         self.graph.add_edge("A", "B")
         self.assertEqual(len(self.graph.get_vertices()), 2)
         self.assertTrue(self.graph.has_edge("A", "B"))
-        self.assertTrue(self.graph.has_edge("B", "A"))
         self.assertIn("B", self.graph.get_adjacent("A"))
 
     def test_add_edges(self):
@@ -59,6 +59,25 @@ class GraphTests(unittest.TestCase):
         self.graph.add_edge("10", "5", 16)
         self.graph.add_edge("10", "6", 9)
         self.assertEqual(self.graph.get_ostov_minimal_weight(), 46)
+
+    def test_strongly_connected_components(self):
+        self.graph.add_edge("a", "b", 3)
+        self.graph.add_edge("b", "e", 3)
+        self.graph.add_edge("e", "a", 3)
+        self.graph.add_edge("e", "f", 3)
+        self.graph.add_edge("f", "g", 3)
+        self.graph.add_edge("g", "f", 3)
+        self.graph.add_edge("b", "f", 3)
+        self.graph.add_edge("b", "c", 3)
+        self.graph.add_edge("c", "g", 3)
+        self.graph.add_edge("c", "d", 3)
+        self.graph.add_edge("d", "h", 3)
+        self.graph.add_edge("d", "c", 3)
+        self.graph.add_edge("h", "g", 3)
+        self.graph.add_edge("h", "d", 3)
+        self.graph_dict = self.graph.adjacent
+        a = self.graph.kosaraju()
+        self.assertEqual(StrongConnectivity.Condensation(self.graph_dict), [["a", "b", "e"], ["f", "g"], ["c", "d", "h"]])
 
 
 if __name__ == "__main__":
