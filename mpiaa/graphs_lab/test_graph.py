@@ -77,7 +77,9 @@ class GraphTests(unittest.TestCase):
         self.graph.add_edge("h", "d", 3)
         self.graph_dict = self.graph.adjacent
         a = self.graph.kosaraju()
-        self.assertEqual(StrongConnectivity.Condensation(self.graph_dict), [["a", "b", "e"], ["f", "g"], ["c", "d", "h"]])
+        #self.assertEqual(StrongConnectivity.Condensation(self.graph_dict), [["a", "b", "e"], ["f", "g"], ["c", "d", "h"]])
+        self.assertEqual(sorted([sorted(lst) for lst in self.graph.kosaraju()]),
+                         sorted([sorted(lst) for lst in [["a", "b", "e"], ["f", "g"], ["c", "d", "h"]]]))
 
 
 if __name__ == "__main__":

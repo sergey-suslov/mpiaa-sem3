@@ -70,10 +70,11 @@ class Graph(object):
     def get_ostov_minimal_weight(self):
         full_weight = 0
         min_weight = maxsize
-        min_vertex = object
         graph_size = len(self.vertices)
         avalable_vetrices = list()
-        avalable_vetrices.append(next(iter(self.vertices)))
+        start_vertex = next(iter(self.vertices))
+        min_vertex = start_vertex
+        avalable_vetrices.append(start_vertex)
         while len(avalable_vetrices) != graph_size:
             for vertex in avalable_vetrices:
                 for adj_vetrex in self.adjacent[vertex]:
@@ -138,4 +139,5 @@ class Graph(object):
                                 stack.append(v)
                         leader[u].append(item)
             return leader
-        return second_pass(first_pass(self.get_reverse_graph()))
+        result = second_pass(first_pass(self.get_reverse_graph()))
+        return [v for k, v in result.items()]
