@@ -1,3 +1,6 @@
+from sys import maxsize
+
+
 class Graph(object):
     """Graph class"""
     def __init__(self, vertices=[], edges=[], weight={}):
@@ -31,7 +34,7 @@ class Graph(object):
             self.weight[v2][v1] = weight
         else:
             self.weight[v2] = {}
-            self.weight[v1][v2] = weight
+            self.weight[v2][v1] = weight
         v1_adj = self.adjacent[v1]
         v2_adj = self.adjacent[v2]
         if v2 not in v1_adj:
@@ -57,6 +60,28 @@ class Graph(object):
         if v1 not in self.vertices or v2 not in self.vertices:
             return False
         return v2 in self.adjacent[v1]
+
+    def get_ostov_minimal_weight(self):
+        full_weight = 0
+        min_weight = maxsize
+        min_vertex = object
+        graph_size = len(self.vertices)
+        avalable_vetrices = list()
+        avalable_vetrices.append(next(iter(self.vertices)))
+        while len(avalable_vetrices) != graph_size:
+            for vertex in avalable_vetrices:
+                for adj_vetrex in self.adjacent[vertex]:
+                    if adj_vetrex not in avalable_vetrices:
+                        current_weight = self.weight[vertex][adj_vetrex]
+                        if current_weight < min_weight:
+                            min_weight = current_weight
+                            min_vertex = adj_vetrex
+            full_weight += min_weight
+            avalable_vetrices.append(min_vertex)
+            min_weight = maxsize
+        return full_weight
+
+
 
 
 
