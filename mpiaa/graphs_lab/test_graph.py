@@ -1,4 +1,4 @@
-from mpiaa.graphs.graph import Graph
+from mpiaa.graphs_lab.graph import Graph
 import unittest
 
 
@@ -24,6 +24,12 @@ class GraphTests(unittest.TestCase):
         self.assertIn("C", self.graph.get_adjacent("A"))
         self.assertNotIn("D", self.graph.get_adjacent("A"))
         self.assertFalse(self.graph.has_edge("A", "D"))
+
+    def test_weight(self):
+        self.graph.add_edge("A", "B", 3)
+        self.graph.add_edge("A", "C", 2)
+        self.graph.add_vertex("D")
+        self.assertEqual(self.graph.get_weight("A"), {"B": 3, "C": 2})
 
 
 if __name__ == "__main__":
