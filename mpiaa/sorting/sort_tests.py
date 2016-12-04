@@ -15,7 +15,7 @@ class SortTests(unittest.TestCase):
         self.assertEqual(self.sort_func([1]), [1])
 
     def test_multiple(self):
-        self.assertEqual(self.sort_func([3, 2, 1]), [1, 2, 3])
+        self.assertEqual(self.sort_func([3, 2, 1, 4]), [1, 2, 3, 4])
 
     def test_all_unique_false(self):
         self
