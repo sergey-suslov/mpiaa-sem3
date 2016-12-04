@@ -4,6 +4,8 @@ import time
 
 import sys
 
+from mpiaa.graphs_lab.graph_algs import shortest_path
+from mpiaa.graphs_lab.bellman import bellman_ford
 from mpiaa.graphs_lab.graph import Graph
 from mpiaa.graphs_lab import StrongConnectivity, DFS
 
@@ -17,6 +19,11 @@ def practise():
             lab_graph.add_edge(str(pair[0]), str(pair[1]), int(100*random()))
     graph_dict = lab_graph.adjacent
     print("Graph is filled")
+
+
+    #Bellman-Floyd########################################
+    print(shortest_path(lab_graph, "9907233"))
+    ######################################################
 
     #Custom Sedgwick#######################################
 
@@ -53,6 +60,8 @@ def practise():
     #Ostov################################################
     print("Ostov " + str(lab_graph.get_ostov_minimal_weight()))
     ######################################################
+
+
 
 if __name__ == "__main__":
     practise()

@@ -1,7 +1,9 @@
 import operator
-
-import mpiaa.graphs.graph
+import mpiaa.graphs_lab.graph
 import sys
+
+from mpiaa.graphs_lab.bellman import bellman_ford
+
 
 def is_connected(graph):
     """Returns True if graph is connected, otherwise False"""
@@ -14,18 +16,19 @@ def is_connected(graph):
             return False
     return True
 
+
 def bypassing_deep_connected(graph, vertex, passed):
     for v in graph.get_adjacent(vertex):
         if not passed[v]:
             passed[v] = True
             bypassing_deep_connected(graph, v, passed)
 
-def shortest_path(graph, src_vertex, dest_vertex):
+
+def shortest_path(graph, src_vertex):
     """Returns shortest path between src and dest vertices in the graph.
     Shortest path is returned as list [src_vertex, ..., dest_vertex].
     If there is no path, returns empty list."""
-    return dijkstra(graph, src_vertex, dest_vertex)
-
+    return bellman_ford(graph.weight, src_vertex)
 
 
 def bypassing_deep(g, vertex, passed, color, list_of_components):
@@ -49,19 +52,6 @@ def connected_components(graph):
             list_of_components.append([])
 
     return list_of_components[:-1]
-
-
-def find_min_vertex(lst, is_visited_lst):
-    length = len(lst)
-    n = 0
-    while n < length:
-        min_index = min(lst, key=lambda k: lst[k])
-        if not is_visited_lst[str(min_index)]:
-            return min_index
-        else:
-            lst[min_index] = sys.maxsize
-        n += 1
-    return None
 
 
 def dijkstra(g, s, v):
