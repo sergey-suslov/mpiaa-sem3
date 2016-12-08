@@ -7,8 +7,6 @@ class GraphAlgsTests(unittest.TestCase):
     def setUp(self):
         self.graph = Graph()
 
-
-
     def test_shortest_path(self):
         self.graph.add_edge("1", "2", 3)
         self.graph.add_edge("1", "3", 5)
@@ -49,21 +47,5 @@ class GraphAlgsTests(unittest.TestCase):
         sorted(self.sorted_answer, key=lambda x: list(x)[0])
         sorted(self.sorted_result, key=lambda x: list(x)[0])
         self.assertEqual(self.sorted_result, self.sorted_answer)
-        # self.assertEqual(shortest_path(self.graph2, "a", "d")[1], ["a", "d"])
-        # self.assertEqual(shortest_path(self.graph3, "a", "e")[1], [])
-        # self.assertEqual(shortest_path(self.graph4, "a", "e")[1], ["a", "c", "e"])
-
-    # def assertListsOfListsEqual(self, ll1, ll2):
-    #     s1 = sorted([sorted(l) for l in ll1])
-    #     s2 = sorted([sorted(l) for l in ll2])
-    #     self.assertEqual(s1, s2)
-    #
-    # def test_connected_components(self):
-    #     self.assertListsOfListsEqual(connected_components(self.graph1), [["a", "b"], ["c", "d"]])
-    #     self.assertListsOfListsEqual(connected_components(self.graph2), [["a", "b", "c", "d"]])
-    #     self.assertListsOfListsEqual(connected_components(self.graph3), [["a", "b", "c", "d"], ["e"]])
-    #     self.assertListsOfListsEqual(connected_components(self.graph4), [["a", "b", "c", "d", "e"]])
-
-
 if __name__ == "__main__":
     unittest.main()

@@ -14,19 +14,19 @@ def practise():
     lab_graph = Graph()
     with open('src/graph.txt') as graph_file:
         graph_file = graph_file.read()
-        for adj in graph_file.split('\n')[:15000]:
+        for adj in graph_file.split('\n')[:150000]:
             pair = adj.split('\t')
             lab_graph.add_edge(str(pair[0]), str(pair[1]), int(100*random()))
     graph_dict = lab_graph.adjacent
+    t1 = time.time()
+    lab_graph.get_ostov_minimal_weight()
+    t2 = time.time()
+    print("Ostov " + str(t2 - t1))
     print("Graph is filled")
-
-
     #Bellman-Floyd########################################
     print(shortest_path(lab_graph, "9907233"))
     ######################################################
-
     #Custom Sedgwick#######################################
-
     t1 = time.time()
     components = lab_graph.kosaraju()
     t2 = time.time()
@@ -50,18 +50,13 @@ def practise():
         if current_len < min_len:
             min_len = current_len
     average_len = sum / num_of_comps
-
     print("Strongy connected components lib's " + str(t2 - t1) + " num of comps: " + str(num_of_comps))
     print("min, max, average length of components: " + str(min_len) + ", " + str(max_len) + ", " + str(average_len))
     ######################################################
 
-
-
     #Ostov################################################
     print("Ostov " + str(lab_graph.get_ostov_minimal_weight()))
     ######################################################
-
-
 
 if __name__ == "__main__":
     practise()

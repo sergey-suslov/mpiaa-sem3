@@ -1,6 +1,8 @@
 from math import floor, log10
 from random import randint
 
+import math
+
 from mpiaa.sorting.sortings import merge_sort
 from mpiaa.util import seq_ints, random_ints, random_int_pairs, powers_of
 from mpiaa.timer import time_us
@@ -44,39 +46,57 @@ def split_list(alist, wanted_parts=1):
              for i in range(wanted_parts)]
 
 
-def bucket_sort(lst, get_key=lambda item: item):
-    if not lst:
-        return []
-    if len(lst) == 1:
-        return lst
-    final_sort = lambda item: get_key(item[0])
-    bucket, bucket1, bucket2 = [], [], []  # The three empty buckets
-    max_value = max(lst, key=get_key)
-    min_value = min(lst, key=get_key)
-    value_range = ((get_key(max_value) - get_key(min_value))/2)
-    # Populating the buckets with the list elements
-    for i in range(len(lst)):
-        if get_key(lst[i]) < floor(get_key(max_value) - value_range):
-            bucket.append(lst[i])
-        else:
-            bucket1.append(lst[i])
+def bucket_sort(array, get_key=lambda item: item, bucketSize=2):
+    if len(array) == 0:
+        return array
 
-    bucket.sort(key=get_key)
-    bucket1.sort(key=get_key)
+    # Determine minimum and maximum values
+    minValue = min(array, key=get_key)
+    maxValue = max(array, key=get_key)
 
-    # Prints the buckets and their contents
-    # The actual sorting
-    final_lst = bucket + bucket1
-    print("Sorted list:", final_lst)
-    return final_lst
+    if int((get_key(maxValue) - get_key(minValue)) / 3) > 0:
+        bucketSize = int((get_key(maxValue) - get_key(minValue)) / 3)
 
 
-def radix_sort(lst, get_keys=(lambda item: item[0], lambda item: item[1])):
-    lst3 = [str(x) for x in lst]
-    temp = merge_sort([x[1]+ x[2] + x[3] for x in lst3])
-    temp1 = merge_sort([x[3] + x[2] + x[1] for x in temp])
-    final_lst = [int(x) for x in temp1]
-    return final_lst
+    # Initialize buckets
+    bucketCount = math.floor((get_key(maxValue) - get_key(minValue)) / bucketSize) + 1
+    buckets = []
+    for i in range(0, bucketCount):
+        buckets.append([])
+
+    # Distribute input array values into buckets
+    for i in range(0, len(array)):
+        buckets[math.floor((get_key(array[i]) - get_key(minValue)) / bucketSize)].append(array[i])
+
+    # Sort buckets and place back into input array
+    array = []
+    for i in range(0, len(buckets)):
+        buckets[i].sort(key=get_key)
+        for j in range(0, len(buckets[i])):
+            array.append(buckets[i][j])
+
+    return array
+
+
+
+
+def radixsort(a, get_keys=(lambda item: item[0], lambda item: item[1])):
+    for get_key in get_keys:
+        maxLen = -1
+        for number in a:  # Find longest number, in digits
+            numLen = len(str(number))
+            if numLen > maxLen:
+                maxLen = numLen
+        buckets = [[] for i in range(0, 10)]  # Buckets for each digit
+        for digit in range(0, maxLen):
+            for number in a:
+                buckets[int(get_key(number) / 10 ** digit % 10)].append(number)
+            del a[:]
+            for bucket in buckets:
+                a.extend(bucket)
+                del bucket[:]
+    return a
+
 
 if __name__ == "__main__":
     time_us({

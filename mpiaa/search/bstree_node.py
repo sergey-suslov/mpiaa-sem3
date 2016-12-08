@@ -52,9 +52,11 @@ class BSTreeNode(object):
         if self.key == key:
             return self.item
         elif key > self.key:
-            return self.right.find(key)
+            if self.right:
+                return self.right.find(key)
         else:
-            return self.left.find(key)
+            if self.left:
+                return self.left.find(key)
         # Replace by correct code
 
     def remove(self, key):

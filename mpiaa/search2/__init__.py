@@ -4,7 +4,7 @@ from mpiaa.search2.Human import Human
 from mpiaa.search2.hash_table import HashTable
 
 if __name__ == "__main__":
-    people = open("../../record_gen/records_1e3.txt", "r").read()
+    people = open("../../record_gen/records_1e6.txt", "r").read()
     peoples = people.split("\n")
     peoples = [p.split(' ') for p in peoples]
     humen = [Human(p[0], p[1], p[2], p[3], p[4]) for p in peoples]
@@ -14,9 +14,11 @@ if __name__ == "__main__":
         str_hash_table.insert(i, str(i.last_name) + str(i.day))
     for i in str_hash_table.buckets:
         if i:
-            print(i[0])
+            pass
+            #print(i[0])
         else:
-            print("None")
+            pass
+            #print("None")
     k = 2
     indexes = [n for n in range(len(humen)) if n % k == 0]
     t1 = time.time()
@@ -34,8 +36,9 @@ if __name__ == "__main__":
         linear_list.append(str(i.first_name) + str(i.day))
 
     t1 = time.time()
-    for i in indexes:
-        linear_list.__contains__(str(humen[i].last_name) + str(humen[i].day))
+    # for i in indexes:
+    #     if str(humen[i].last_name) + str(humen[i].day) in linear_list:
+    #         pass
     t2 = time.time()
     print("Search every " + str(k) + " element, linear list time: " + str(t2 - t1))
 

@@ -81,6 +81,5 @@ class GraphTests(unittest.TestCase):
         self.assertEqual(sorted([sorted(lst) for lst in self.graph.kosaraju()]),
                          sorted([sorted(lst) for lst in [["a", "b", "e"], ["f", "g"], ["c", "d", "h"]]]))
 
-
 if __name__ == "__main__":
     unittest.main()
