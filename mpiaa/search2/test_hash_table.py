@@ -12,6 +12,16 @@ class HashTableTests(unittest.TestCase):
     def setUp(self):
         self.str_hash_table = HashTable(len(self.human), lambda key: hash(key) % len(self.human))
 
+    def test_remove(self):
+        self.str_hash_table.insert(1, 1)
+        self.str_hash_table.insert(1, 2)
+        self.str_hash_table.insert(2, 2)
+        self.str_hash_table.insert(3, 3)
+        self.str_hash_table.insert(4, 4)
+        self.str_hash_table.insert(5, 5)
+        self.str_hash_table.remove(2)
+        self.assertEqual(self.str_hash_table.find(2), None)
+
     def test_str_find_in_empty(self):
         self.assertIsNone(self.str_hash_table.find("abc"))
 

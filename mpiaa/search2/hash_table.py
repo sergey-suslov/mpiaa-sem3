@@ -54,3 +54,9 @@ class HashTable(object):
                 return self.search_last(hash_key, key)
         else:
             return None
+
+    def remove(self, key):
+        hash_key = self.custom_hash(key)
+        a = self.find(key)
+
+

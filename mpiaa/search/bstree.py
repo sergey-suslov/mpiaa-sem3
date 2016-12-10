@@ -26,10 +26,7 @@ class BSTree(object):
             self.elements[key] = 1
 
     def all_unique(self):
-        for k, v in self.elements.items():
-            if v > 1:
-                return False
-        return True
+        return self.root.is_sub_tree_unique()
 
     def find(self, key):
         """
