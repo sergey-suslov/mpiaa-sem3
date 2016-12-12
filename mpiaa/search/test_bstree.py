@@ -19,21 +19,21 @@ class BSTreeTests(unittest.TestCase):
         self.tree.insert(5)
         self.assertEqual(self.tree.find(5), 5)
 
-    def test_all_unique_false(self):
-        self.tree.insert(1)
-        self.tree.insert(2)
-        self.tree.insert(3)
-        self.tree.insert(2)
-        self.tree.insert(5)
-        self.assertFalse(self.tree.all_unique())
-
-    def test_all_unique_true(self):
-        self.tree.insert(1)
-        self.tree.insert(2)
-        self.tree.insert(3)
-        self.tree.insert(4)
-        self.tree.insert(5)
-        self.assertTrue(self.tree.all_unique())
+    # def test_all_unique_false(self):
+    #     self.tree.insert(1)
+    #     self.tree.insert(2)
+    #     self.tree.insert(3)
+    #     self.tree.insert(2)
+    #     self.tree.insert(5)
+    #     self.assertFalse(self.tree.all_unique())
+    #
+    # def test_all_unique_true(self):
+    #     self.tree.insert(1)
+    #     self.tree.insert(2)
+    #     self.tree.insert(3)
+    #     self.tree.insert(4)
+    #     self.tree.insert(5)
+    #     self.assertTrue(self.tree.all_unique())
 
     def test_insert_strings(self):
         self.tree.insert("abc", 1)

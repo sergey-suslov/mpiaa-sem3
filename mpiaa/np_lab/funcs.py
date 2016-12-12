@@ -7,6 +7,7 @@ def custom_sum(l, get_key=lambda item: item):
         result += get_key(i)
     return result
 
+
 def list_of_sums(l, get_key=lambda item: item):
     all_combinations = max_clique.all_combinations(l)
     max_comb = []

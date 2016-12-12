@@ -21,6 +21,7 @@ class HashTableTests(unittest.TestCase):
         self.str_hash_table.insert(5, 5)
         self.str_hash_table.remove(2)
         self.assertEqual(self.str_hash_table.find(2), None)
+        self.assertEqual(self.str_hash_table.get_size(), 5)
 
     def test_str_find_in_empty(self):
         self.assertIsNone(self.str_hash_table.find("abc"))

@@ -40,23 +40,23 @@ class BSTreeNode(object):
         # Replace by correct code
         pass
 
-    def is_sub_tree_unique(self):
-        if self.left:
-            flag = self.left.find(self.key)
-            flag_u = self.left.is_sub_tree_unique()
-        else:
-            flag = True
-            flag_u = True
-        if self.right:
-            flag_2 = self.right.find(self.key)
-            flag_u_2 = self.right.is_sub_tree_unique()
-        else:
-            flag_2 = True
-            flag_u_2 = True
-        if flag and flag_2 and flag_u and flag_u_2:
-            return False
-        else:
-            return True
+    # def is_sub_tree_unique(self):
+    #     if self.left:
+    #         flag = self.left.find(self.key)
+    #         flag_u = self.left.is_sub_tree_unique()
+    #     else:
+    #         flag = True
+    #         flag_u = True
+    #     if self.right:
+    #         flag_2 = self.right.find(self.key)
+    #         flag_u_2 = self.right.is_sub_tree_unique()
+    #     else:
+    #         flag_2 = True
+    #         flag_u_2 = True
+    #     if flag and flag_2 and flag_u and flag_u_2:
+    #         return False
+    #     else:
+    #         return True
 
 
     def find(self, key):

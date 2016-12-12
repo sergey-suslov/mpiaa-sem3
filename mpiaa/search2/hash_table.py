@@ -10,6 +10,9 @@ class HashTable(object):
             self.buckets.append([])
         self.hash_func = hash_func
 
+    def get_size(self):
+        return self.num_of_el
+
     def append_last(self, search_from, key, item):
         while self.buckets[search_from]:
             if self.buckets[search_from][0][0] == key:
@@ -55,8 +58,28 @@ class HashTable(object):
         else:
             return None
 
+    def search_last_del(self, start, key):
+        i = start
+        while self.buckets[i] and self.buckets[i][0][0] != key:
+            if i == self.size - 1:
+                i = 0
+            else:
+                i += 1
+            if i == start:
+                return None
+        self.buckets[i] = None
+        self.num_of_el -= 1
+
     def remove(self, key):
         hash_key = self.custom_hash(key)
-        a = self.find(key)
+        if self.buckets[hash_key]:
+            if self.buckets[hash_key][0][0] == key:
+                self.buckets[hash_key] = None
+            else:
+                self.search_last_del(hash_key, key)
+                self.num_of_el -= 1
+        else:
+            return None
+
 
 

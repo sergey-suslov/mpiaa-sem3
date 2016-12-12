@@ -2,7 +2,6 @@ from .funcs import custom_sum
 
 
 class Backpack:
-
     def __init__(self, avalible_weight, items=[]):
         self.avalible_weight = avalible_weight
         self.items = items
