@@ -83,11 +83,11 @@ if __name__ == "__main__":
 
     def refreshGraph(edges_to_colorize=[]):
         plt.clf()
-        nx.draw_networkx_nodes(G, pos, nodelist=allNodes, node_color='k', node_size=numpy.math.floor(1000/(M+N)), alpha=0.8)
+        nx.draw_networkx_nodes(G, pos, nodelist=allNodes, node_color='k', node_size=numpy.math.floor(3000/(M+N)), alpha=0.8)
         nx.draw_networkx_nodes(G, pos, nodelist=checkpoints, node_color='w', node_size=100, alpha=0.8)
         nx.draw_networkx_nodes(G, pos, nodelist=start_finish[:1], node_color='g', node_size=100, alpha=0.8)
         nx.draw_networkx_nodes(G, pos, nodelist=start_finish[1:], node_color='r', node_size=100, alpha=0.8)
-        nx.draw_networkx_edges(G, pos, style='dotted', edge_color='k', width=1.0, alpha=0.5)
+        nx.draw_networkx_edges(G, pos, style='dotted', edge_color='k', width=1.0, alpha=0.7)
         nx.draw_networkx_edges(G, pos, edgelist=edges_to_colorize, edge_color='b', width=3.0, alpha=0.7)
         plt.axis('off')
         plt.axis((-1, M + 1, -1, N + 1))
