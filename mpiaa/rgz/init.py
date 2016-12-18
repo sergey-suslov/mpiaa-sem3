@@ -1,4 +1,6 @@
+import ctypes
 import heapq
+from tkinter import messagebox
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -81,7 +83,7 @@ if __name__ == "__main__":
     count = 0
 
 
-    def refreshGraph(edges_to_colorize=[]):
+    def refreshGraph(edges_to_colorize=[], labels={}):
         plt.clf()
         nx.draw_networkx_nodes(G, pos, nodelist=allNodes, node_color='k', node_size=numpy.math.floor(3000/(M+N)), alpha=0.8)
         nx.draw_networkx_nodes(G, pos, nodelist=checkpoints, node_color='w', node_size=100, alpha=0.8)
@@ -93,6 +95,7 @@ if __name__ == "__main__":
         plt.axis((-1, M + 1, -1, N + 1))
         fig.patch.set_facecolor('white')
         plt.show()
+
 
 
     def bfs_paths(graph, start, goal):
@@ -117,8 +120,13 @@ if __name__ == "__main__":
             min_len = pylab.sys.maxsize
             min_path = []
             for i in checkpoints:
-                path = a_star_search(graph, current_start, i)
-                if len(path) < min_len:
+                is_valid = True
+                try:
+                    path = a_star_search(graph, current_start, i)
+                except:
+                    is_valid = False
+                    checkpoints.remove(i)
+                if is_valid and len(path) < min_len:
                     min_path = path
                     min_len = len(path)
                     passed_point = i
@@ -130,7 +138,11 @@ if __name__ == "__main__":
             current_start = passed_point
             if current_start in checkpoints:
                 checkpoints.remove(current_start)
-        path = a_star_search(graph, current_start, finish)
+        try:
+            path = a_star_search(graph, current_start, finish)
+        except:
+            messagebox.showinfo("Game message", "Path does not exist")
+            return []
         result += path[1:]
         return [start] + result
 
@@ -141,7 +153,7 @@ if __name__ == "__main__":
             edges.append((current_node, i))
             current_node = i
         refreshGraph(edges_to_colorize=edges)
-        pass
+
 
     def onClick(event):
         (x, y) = (event.xdata, event.ydata)
