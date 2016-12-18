@@ -14,7 +14,7 @@ if __name__ == "__main__":
         # nx.draw_networkx_nodes(T, pos, nodelist=white, node_color='w', node_size=100, alpha=0.8)
         nx.draw_networkx_edges(T, pos, width=1.0, alpha=0.5)
         plt.axis('on')
-        plt.axis((-10, 10, -10, 10))
+        plt.axis((-math.ceil(M/2), math.ceil(M/2), -math.ceil(N/2), math.ceil(N/2)))
         fig.patch.set_facecolor('white')
         plt.show()
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     T = nx.Graph()
 
-    M, N = 3, 3
+    M, N = 10, 5
     ### Nodes
     checkpoints, start_finish = [], []
     allNodes = list(range(M*N))

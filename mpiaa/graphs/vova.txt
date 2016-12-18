@@ -1,0 +1,40 @@
+
+def find_min_vertex(lst, is_visited_lst):
+    length = len(lst)
+    n = 0
+    while n < length:
+        min_index = min(lst, key=lambda k: lst[k])
+        if not is_visited_lst[str(min_index)]:
+            return min_index
+        else:
+            lst[min_index] = sys.maxsize
+        n += 1
+    return None
+
+def dijkstra(g, s, v):
+    graph_len = len(g.get_vertices())
+    d = {key: sys.maxsize for key in g.get_vertices()}
+    d[s] = 0
+    p = {key: None for key in g.get_vertices()}
+    p[s] = s
+    u = {key: False for key in g.get_vertices()}
+    #min_index, min_value = min(enumerate(), key=operator.itemgetter(1))
+    n = 0
+    while n <= graph_len:
+        min_vertex = find_min_vertex(d.copy(), u)
+        if min_vertex == None:
+            break
+        u[min_vertex] = True
+        adj = g.get_adjacent(min_vertex)
+        for edge in adj:
+            if d[edge] > d[min_vertex] + 1:
+                d[edge] = d[min_vertex] + 1
+                p[edge] = min_vertex
+        n += 1
+
+    if not p[v]:
+        return []
+    path = [v]
+    while path[-1] != s:
+        path.append(p[path[-1]])
+    return path[::-1]
