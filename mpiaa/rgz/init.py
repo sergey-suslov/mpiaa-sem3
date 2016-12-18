@@ -14,7 +14,7 @@ if __name__ == "__main__":
         # nx.draw_networkx_nodes(T, pos, nodelist=white, node_color='w', node_size=100, alpha=0.8)
         nx.draw_networkx_edges(T, pos, width=1.0, alpha=0.5)
         plt.axis('on')
-        plt.axis((-math.ceil(M/2), math.ceil(M/2), -math.ceil(N/2), math.ceil(N/2)))
+        plt.axis((-1, N, -1, M))
         fig.patch.set_facecolor('white')
         plt.show()
 
@@ -36,20 +36,20 @@ if __name__ == "__main__":
 
     T = nx.Graph()
 
-    M, N = 10, 5
+    M, N = 10, 10
     ### Nodes
     checkpoints, start_finish = [], []
     allNodes = list(range(M*N))
     for i in range(M):
         for j in range(N):
-            allNodes[i*M + j] = (i, j)
+            allNodes[i * M + j] = (i, j)
 
     for node in allNodes:
         T.add_node(node)
 
     ### Edges
-    for i in range(1, M-1):
-        for j in range(1, N-1):
+    for i in range(1, M - 1):
+        for j in range(1, N - 1):
             T.add_edge((i, j), (i - 1, j - 1))
             T.add_edge((i, j), (i - 1, j))
             T.add_edge((i, j), (i - 1, j + 1))
@@ -59,17 +59,17 @@ if __name__ == "__main__":
             T.add_edge((i, j), (i + 1, j - 1))
             T.add_edge((i, j), (i, j - 1))
 
-    for i in range(1, M-1):
+    for i in range(1, M - 1):
         T.add_edge((i, 0), (i - 1, 0))
         T.add_edge((i, 0), (i + 1, 0))
-        T.add_edge((i, N-1), (i - 1, N-1))
-        T.add_edge((i, N-1), (i + 1, N-1))
+        T.add_edge((i, N - 1), (i - 1, N - 1))
+        T.add_edge((i, N - 1), (i + 1, N - 1))
 
-    for i in range(1, N-1):
+    for i in range(1, N - 1):
         T.add_edge((0, i), (0, i - 1))
         T.add_edge((0, i), (0, i + 1))
-        T.add_edge((N-1, i), (N-1, i - 1))
-        T.add_edge((N-1, i), (N-1, i + 1))
+        T.add_edge((N - 1, i), (N - 1, i - 1))
+        T.add_edge((N - 1, i), (N - 1, i + 1))
 
 
     ### Positions of the nodes
@@ -77,11 +77,10 @@ if __name__ == "__main__":
     for i in range(M):
         for j in range(N):
             pos[(i, j)] = numpy.array([i, j])
-            print((i*M + j, [i, j]))
+            print((i * M + j, [i, j]))
 
     ### Draw nodes and edges
     refreshGraph()
-
 # def onClick():
 #
 #
