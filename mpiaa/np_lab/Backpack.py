@@ -13,5 +13,12 @@ class Backpack:
             self.items.append(item)
             self.current_weight += item.weight
             self.full_price += item.price
+            return True
         else:
             return None
+
+    def clear(self):
+        self.items = []
+        self.current_weight = 0
+        self.full_price = 0
+

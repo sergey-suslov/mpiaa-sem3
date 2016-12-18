@@ -26,6 +26,15 @@ def to_string_list(items):
     return [str(item) for item in items]
 
 
+def all_unique(l):
+    table = HashTable(num_of_buckets=len(l)*2, hash_func=lambda i: hash(i))
+    for i in l:
+        if table.find(i):
+            return False
+        else:
+            table.insert(i, i)
+    return True
+
 if __name__ == "__main__":
     print("Integer keys")
     time_us({

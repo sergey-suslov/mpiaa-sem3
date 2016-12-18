@@ -14,7 +14,7 @@ def practise():
     lab_graph = Graph()
     with open('src/graph.txt') as graph_file:
         graph_file = graph_file.read()
-        for adj in graph_file.split('\n')[:150000]:
+        for adj in graph_file.split('\n')[:100]:
             pair = adj.split('\t')
             lab_graph.add_edge(str(pair[0]), str(pair[1]), int(100*random()))
     graph_dict = lab_graph.adjacent

@@ -1,4 +1,5 @@
 from mpiaa.search.bstree import BSTree
+from mpiaa.search.search import all_unique
 import unittest
 
 
@@ -19,13 +20,11 @@ class BSTreeTests(unittest.TestCase):
         self.tree.insert(5)
         self.assertEqual(self.tree.find(5), 5)
 
-    # def test_all_unique_false(self):
-    #     self.tree.insert(1)
-    #     self.tree.insert(2)
-    #     self.tree.insert(3)
-    #     self.tree.insert(2)
-    #     self.tree.insert(5)
-    #     self.assertFalse(self.tree.all_unique())
+    def test_all_unique_false(self):
+        self.assertFalse(all_unique([1, 2, 3, 1, 4]))
+
+    def test_all_unique_true(self):
+        self.assertTrue(all_unique([1, 2, 3, 5, 4]))
     #
     # def test_all_unique_true(self):
     #     self.tree.insert(1)

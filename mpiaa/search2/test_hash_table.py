@@ -1,5 +1,6 @@
 from mpiaa.search2.Human import Human
 from mpiaa.search2.hash_table import HashTable
+from mpiaa.search2.search2 import all_unique
 import unittest
 
 
@@ -11,6 +12,12 @@ class HashTableTests(unittest.TestCase):
 
     def setUp(self):
         self.str_hash_table = HashTable(len(self.human), lambda key: hash(key) % len(self.human))
+
+    def test_all_unique_true(self):
+        self.assertTrue(all_unique([1, 2, 3, 4, 5, 6, 0]))
+
+    def test_all_unique_false(self):
+        self.assertFalse(all_unique([1, 2, 3, 2, 5, 6, 0]))
 
     def test_remove(self):
         self.str_hash_table.insert(1, 1)

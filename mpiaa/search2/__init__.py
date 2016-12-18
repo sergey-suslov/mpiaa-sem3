@@ -4,14 +4,14 @@ from mpiaa.search2.Human import Human
 from mpiaa.search2.hash_table import HashTable
 
 if __name__ == "__main__":
-    people = open("../../record_gen/records_1e6.txt", "r").read()
+    people = open("../../record_gen/records_1e4.txt", "r").read()
     peoples = people.split("\n")
     peoples = [p.split(' ') for p in peoples]
     humen = [Human(p[0], p[1], p[2], p[3], p[4]) for p in peoples]
 
     str_hash_table = HashTable(num_of_buckets=len(humen), hash_func= lambda key: hash(key))
     for i in humen:
-        str_hash_table.insert(i, str(i.last_name) + str(i.day))
+        str_hash_table.insert(i, str(i.last_name) + str(i.age))
     for i in str_hash_table.buckets:
         if i:
             pass
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     t1 = time.time()
 
     for i in indexes:
-        str_hash_table.find(str(humen[i].last_name) + str(humen[i].day))
+        str_hash_table.find(str(humen[i].last_name) + str(humen[i].age))
 
     t2 = time.time()
 
@@ -33,12 +33,12 @@ if __name__ == "__main__":
     linear_list = []
 
     for i in humen:
-        linear_list.append(str(i.first_name) + str(i.day))
+        linear_list.append(str(i.first_name) + str(i.age))
 
     t1 = time.time()
-    # for i in indexes:
-    #     if str(humen[i].last_name) + str(humen[i].day) in linear_list:
-    #         pass
+    for i in indexes:
+        if str(humen[i].last_name) + str(humen[i].age) in linear_list:
+            pass
     t2 = time.time()
     print("Search every " + str(k) + " element, linear list time: " + str(t2 - t1))
 

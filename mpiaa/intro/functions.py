@@ -28,7 +28,12 @@ def count_if(items, pred):
 def all_unique(items):
     """Returns True if all items are unique.
     Returns False otherwise."""
-    return False
+    if not items:
+        return False
+    for i, v in enumerate(items):
+        if v in items[i+1:]:
+            return False
+    return True
 
 
 if __name__ == "__main__":

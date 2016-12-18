@@ -1,6 +1,6 @@
 import operator
 
-import mpiaa.graphs.graph
+from mpiaa.graphs.graph import Graph
 import sys
 
 def is_connected(graph):
@@ -92,28 +92,3 @@ def dijkstra(g, s, v):
         path.append(p[path[-1]])
     return path[::-1]
 
-#
-# def dijkstra(g, s, v):
-#     graph_len = len(g.get_vertices())
-#     d = [sys.maxsize]*graph_len
-#     d[s] = 0
-#     p = [None]*graph_len
-#     p[0] = 0
-#     u = [False]*graph_len
-#     #min_index, min_value = min(enumerate(), key=operator.itemgetter(1))
-#     n = 0
-#     while n <= graph_len:
-#         min_vertex = find_min_vertex(d[:], u)
-#         if min_vertex == None:
-#             break
-#         u[min_vertex] = True
-#         adj = g.get_adjacent(min_vertex)
-#         for edge in adj:
-#             if d[edge] > d[min_vertex] + 1:
-#                 d[edge] = d[min_vertex] + 1
-#                 p[edge] = min_vertex
-#
-#     path = [v]
-#     while path[-1] != s:
-#         path.append(p[path[-1]])
-#     return path

@@ -22,6 +22,14 @@ def binary_search(items, items_to_find):
     return count
 
 
+def all_unique(l):
+    tree = BSTree()
+    for i in l:
+        if tree.find(i):
+            return False
+        else:
+            tree.insert(i)
+    return True
 
 if __name__ == "__main__":
     time_us({
