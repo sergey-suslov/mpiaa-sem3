@@ -42,6 +42,8 @@ def heuristic(a, b):
     (x2, y2) = b
     return abs(x1 - x2) + abs(y1 - y2)
 
+
+
 def a_star_search(graph, start, goal):
     frontier = PriorityQueue()
     frontier.put(start, 0)
@@ -69,9 +71,46 @@ def a_star_search(graph, start, goal):
         path.append(came_from[path[-1]])
     return path[::-1]
 
-
+def algorithm(graph, start, finish, checkpoints):
+    result = []
+    min_len = pylab.sys.maxsize
+    min_path = []
+    flag = True
+    passed_point = start
+    current_start = start
+    while len(checkpoints) and flag:
+        min_len = pylab.sys.maxsize
+        min_path = []
+        for i in checkpoints:
+            is_valid = True
+            try:
+                path = a_star_search(graph, current_start, i)
+            except:
+                is_valid = False
+                checkpoints.remove(i)
+            if is_valid and len(path) < min_len:
+                min_path = path
+                min_len = len(path)
+                passed_point = i
+        result += min_path[1:]
+        if len(checkpoints) == 1:
+            flag = False
+        if current_start in checkpoints:
+            checkpoints.remove(current_start)
+        current_start = passed_point
+        if current_start in checkpoints:
+            checkpoints.remove(current_start)
+    try:
+        path = a_star_search(graph, current_start, finish)
+    except:
+        messagebox.showinfo("Game message", "Path does not exist")
+        return []
+    result += path[1:]
+    return [start] + result
 
 if __name__ == "__main__":
+    count = 0
+
 
     G = nx.Graph()
     M, N = 40, 10
@@ -80,7 +119,7 @@ if __name__ == "__main__":
     path_edges = []
     allNodes = list(range(M*N))
 
-    count = 0
+
 
 
     def refreshGraph(edges_to_colorize=[], labels={}):
@@ -97,7 +136,6 @@ if __name__ == "__main__":
         plt.show()
 
 
-
     def bfs_paths(graph, start, goal):
         queue = [(start, [start])]
         while queue:
@@ -107,44 +145,6 @@ if __name__ == "__main__":
                     yield path + [next]
                 else:
                     queue.append((next, path + [next]))
-
-
-    def algorithm(graph, start, finish, checkpoints):
-        result = []
-        min_len = pylab.sys.maxsize
-        min_path = []
-        flag = True
-        passed_point = start
-        current_start = start
-        while len(checkpoints) and flag:
-            min_len = pylab.sys.maxsize
-            min_path = []
-            for i in checkpoints:
-                is_valid = True
-                try:
-                    path = a_star_search(graph, current_start, i)
-                except:
-                    is_valid = False
-                    checkpoints.remove(i)
-                if is_valid and len(path) < min_len:
-                    min_path = path
-                    min_len = len(path)
-                    passed_point = i
-            result += min_path[1:]
-            if len(checkpoints) == 1:
-                flag = False
-            if current_start in checkpoints:
-                checkpoints.remove(current_start)
-            current_start = passed_point
-            if current_start in checkpoints:
-                checkpoints.remove(current_start)
-        try:
-            path = a_star_search(graph, current_start, finish)
-        except:
-            messagebox.showinfo("Game message", "Path does not exist")
-            return []
-        result += path[1:]
-        return [start] + result
 
     def update_edges(nodes=[]):
         edges = []
