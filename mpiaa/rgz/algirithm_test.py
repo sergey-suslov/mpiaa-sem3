@@ -3,7 +3,7 @@ from django.utils import unittest
 from mpiaa.rgz.init import algorithm
 
 
-class HashTableTests(unittest.TestCase):
+class Algorithm_test(unittest.TestCase):
     M, N = 40, 10
     ### Nodes
     checkpoints, start_finish = [], []
@@ -80,7 +80,6 @@ class HashTableTests(unittest.TestCase):
         self.G.remove_edge((0, 0), (0, 1))
         self.G.remove_edge((0, 0), (1, 1))
         self.assertEqual(algorithm(self.G, start_finish[0], start_finish[1], self.checkpoints), [])
-
 
 
 if __name__ == "__main__":

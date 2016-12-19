@@ -42,8 +42,6 @@ def heuristic(a, b):
     (x2, y2) = b
     return abs(x1 - x2) + abs(y1 - y2)
 
-
-
 def a_star_search(graph, start, goal):
     frontier = PriorityQueue()
     frontier.put(start, 0)
@@ -70,6 +68,7 @@ def a_star_search(graph, start, goal):
     while path[-1] != start:
         path.append(came_from[path[-1]])
     return path[::-1]
+
 
 def algorithm(graph, start, finish, checkpoints):
     result = []
@@ -109,17 +108,15 @@ def algorithm(graph, start, finish, checkpoints):
     return [start] + result
 
 if __name__ == "__main__":
-    count = 0
-
 
     G = nx.Graph()
-    M, N = 40, 10
+    M, N = 10, 10
     ### Nodes
     checkpoints, start_finish = [], []
     path_edges = []
     allNodes = list(range(M*N))
 
-
+    count = 0
 
 
     def refreshGraph(edges_to_colorize=[], labels={}):
@@ -136,6 +133,7 @@ if __name__ == "__main__":
         plt.show()
 
 
+
     def bfs_paths(graph, start, goal):
         queue = [(start, [start])]
         while queue:
@@ -145,6 +143,9 @@ if __name__ == "__main__":
                     yield path + [next]
                 else:
                     queue.append((next, path + [next]))
+
+
+
 
     def update_edges(nodes=[]):
         edges = []
@@ -287,23 +288,3 @@ if __name__ == "__main__":
         refreshGraph()
     ### Draw nodes and edges
     refreshGraph()
-    # def onClick():
-    #
-    #
-    # def __init__():
-    #     G = nx.Graph()
-    #     G.add_nodes_from([2, 3, 4, 5, 6])
-    #     G.add_edge(1, 2)
-    #     G.add_edge(1, 3)
-    #     G.add_edge(1, 4)
-    #     G.add_edge(1, 5)
-    #     # nx.draw(G)
-    #     # nx.draw_random(G)
-    #     # nx.draw_circular(G)
-    #     nx.draw_spectral(G)
-    #     plt.show()
-    #     fig, ax = plt.subplots()
-    #     fig.canvas.mpl_connect('button_press_event', onClick)
-    #
-    # if __name__ == "__main__":
-    #     __init__()
